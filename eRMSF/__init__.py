@@ -4,7 +4,7 @@ A package to perform time-dependent RMSF analysis on molecular dynamics data.
 """
 
 # Add imports here
-from .ermsf import ermsf
+from .ermsfkit import ermsfkit
 
 from importlib.metadata import version
 

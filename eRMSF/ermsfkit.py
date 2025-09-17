@@ -8,7 +8,7 @@ All code and documentation are modeled after the RMSF analysis class from the MD
 from MDAnalysis.analysis.base import AnalysisBase
 import numpy as np
 
-class ermsf(AnalysisBase):
+class ermsfkit(AnalysisBase):
     r"""Calculate time-dependent RMSF of given atoms across a trajectory.
 
     Note
@@ -63,7 +63,7 @@ class ermsf(AnalysisBase):
             Welford1962
 
         """
-        super(ermsf, self).__init__(atomgroup.universe.trajectory, **kwargs)
+        super(ermsfkit, self).__init__(atomgroup.universe.trajectory, **kwargs)
         self.atomgroup = atomgroup
         self.skip = skip
         self.reference_frame = reference_frame
