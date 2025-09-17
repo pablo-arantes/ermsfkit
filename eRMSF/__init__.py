@@ -8,4 +8,4 @@ from .ermsf import ermsf
 
 from importlib.metadata import version
 
-__version__ = version("ermsf")
+__version__ = version("ermsfkit")
