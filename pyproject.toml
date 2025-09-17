@@ -19,6 +19,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
     "MDAnalysis>=2.0.0",
+    "MDAnalysisTests>=2.7.0",
 ]
 keywords = [
     "molecular simulations",
