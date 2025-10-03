@@ -30,7 +30,7 @@ eRMSF is bound by a [Code of Conduct](https://github.com/pablo-arantes/ermsfkit/
 
 ### Installation
 
-Below we provide instructions both for `pip`.
+Below we provide instructions for `pip` installation.
 
 #### With pip
 
