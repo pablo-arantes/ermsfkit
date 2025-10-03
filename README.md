@@ -87,7 +87,8 @@ Copyright (c) 2025, Pablo Arantes
 
 
 #### Acknowledgements
- 
-Project based on the 
-[MDAnalysis Cookiecutter](https://github.com/MDAnalysis/cookiecutter-mda) version 0.1.
+
+Project based on the [MDAnalysis Cookiecutter](https://github.com/MDAnalysis/cookiecutter-mda) version 0.1.
 Please cite [MDAnalysis](https://github.com/MDAnalysis/mdanalysis#citation) when using eRMSF in published work.
+
+The formal publication of eRMSF is under peer review at the moment - stay tuned.
