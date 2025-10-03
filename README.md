@@ -78,6 +78,12 @@ ermsf_analysis.run()
 results = ermsf_analysis.results.ermsf
 ```
 
+### Jupyter Notebook (Google Colab) 
+
+For convenience, we also provide a Google Colab notebook that allows users to run the eRMSF analysis with ease.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pablo-arantes/ermsfkit/blob/main/eRMSF.ipynb)  - `eRMSF calculation with comparison to traditional RMSF.`
+
 ### Copyright
 
 The eRMSF source code is hosted at https://github.com/pablo-arantes/ermsfkit
