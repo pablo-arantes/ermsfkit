@@ -1,4 +1,4 @@
-eRMSF
+eRMSF: A Python Package for Ensemble RMSF Analysis of Molecular Dynamics and Structural Ensembles
 ==============================
 [//]: # (Badges)
 
@@ -21,68 +21,58 @@ eRMSF
 [url_license]: https://www.gnu.org/licenses/gpl-2.0
 [url_mda]: https://www.mdanalysis.org
 
-eRMSF: A Python Package for Ensemble RMSF Analysis of Molecular Dynamics and Structural Ensembles
+Here, we introduce eRMSF, a fast and user-friendly Python package built with MDKit from MD-Analysis, designed to perform ensemble-based Root Mean Square Fluctuation (RMSF) analyses. Users can easily customize atom, residue, or region selections, tailoring analyses to specific research questions. This approach delivers high-resolution insights into localized motions, complements global stability assessments, and reveals dynamic regions often overlooked by single-method analyses.
 
 eRMSF is bound by a [Code of Conduct](https://github.com/pablo-arantes/ermsfkit/blob/main/CODE_OF_CONDUCT.md).
 
 ### Installation
 
-To build eRMSF from source,
-we highly recommend using virtual environments.
-If possible, we strongly recommend that you use
-[Anaconda](https://docs.conda.io/en/latest/) as your package manager.
-Below we provide instructions both for `conda` and
-for `pip`.
-
-#### With conda
-
-Ensure that you have [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) installed.
-
-Create a virtual environment and activate it:
-
-```
-conda create --name ermsfkit
-conda activate ermsfkit
-```
-
-Install the development and documentation dependencies:
-
-```
-conda env update --name ermsfkit --file devtools/conda-envs/test_env.yaml
-conda env update --name ermsfkit --file docs/requirements.yaml
-```
-
-Build this package from source:
-
-```
-pip install -e .
-```
-
-If you want to update your dependencies (which can be risky!), run:
-
-```
-conda update --all
-```
-
-And when you are finished, you can exit the virtual environment with:
-
-```
-conda deactivate
-```
+Below we provide instructions both for `pip`.
 
 #### With pip
 
 To build the package from source, run:
 
 ```
-pip install .
-```
+pip install git+https://github.com/pablo-arantes/ermsfkit.git
 
-If you want to create a development environment, install
-the dependencies required for tests and docs with:
+or
+
+git clone https://github.com/pablo-arantes/ermsfkit.git
+pip install ermsfkit/
+```
+#### Usage
+Below we provide an example of use:
 
 ```
-pip install ".[test,doc]"
+from eRMSF import ermsfkit
+import MDAnalysis as mda
+import matplotlib.pyplot as plt
+from MDAnalysis.tests.datafiles import PSF, DCD
+from MDAnalysis.analysis import align
+
+# Load the trajectory
+u = mda.Universe(PSF, DCD)
+
+# Align to the first frame (or average structure)
+average = align.AverageStructure(u, u, select='protein and name CA',
+                                 ref_frame=0).run()
+ref = average.results.universe
+align.AlignTraj(u, ref,
+                select='protein and name CA',
+                in_memory=True).run()
+
+# Select the protein backbone (Cα atoms)
+protein = u.select_atoms('protein and name CA')
+
+# Initialize the eRMSF analysis
+ermsf_analysis = ermsfkit(protein, skip=1, reference_frame=0)
+
+# Run the analysis
+ermsf_analysis.run()
+
+# Extract results
+results = ermsf_analysis.results.ermsf
 ```
 
 ### Copyright
