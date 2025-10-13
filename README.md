@@ -36,18 +36,30 @@ Below we provide instructions for `pip` installation.
 
 To build the package from source, run:
 
-```
-pip install git+https://github.com/pablo-arantes/ermsfkit.git
+```bash
+pip install 'ermsfkit @ git+https://github.com/pablo-arantes/ermsfkit.git'
 
 or
 
 git clone https://github.com/pablo-arantes/ermsfkit.git
-pip install ermsfkit/
+pip install .
 ```
+
+To install the package with demo data, run:
+
+```bash
+pip install 'ermsfkit[demo] @ git+https://github.com/pablo-arantes/ermsfkit.git'
+
+or
+
+git clone https://github.com/pablo-arantes/ermsfkit.git
+pip install '.[demo]'
+```
+
 #### Usage
 Below we provide an example of use:
 
-```
+```python
 from eRMSF import ermsfkit
 import MDAnalysis as mda
 import matplotlib.pyplot as plt
