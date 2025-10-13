@@ -19,7 +19,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
     "MDAnalysis>=2.0.0",
-    "MDAnalysisTests>=2.7.0",
+    
 ]
 keywords = [
     "molecular simulations",
@@ -29,6 +29,11 @@ dynamic = [
 ]
 
 [project.optional-dependencies]
+
+demo = [
+    "MDAnalysisTests>=2.7.0",
+]
+
 test = [
     "pytest>=6.0",
     "pytest-xdist>=2.5",
