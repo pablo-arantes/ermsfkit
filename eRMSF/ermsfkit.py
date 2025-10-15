@@ -1,59 +1,66 @@
 """
 ermsf.py
-A package to perform time-dependent RMSF analysis on molecular dynamics data.
+A package to perform time-dependent or ensemble RMSF (eRMSF) analysis 
+on molecular dynamics trajectories.
 
-All code and documentation are modeled after the RMSF analysis class from the MDAnalysis Python package.
+The eRMSF represents the fluctuation of atomic positions relative to a 
+user-defined reference frame across time segments or ensemble members.
 """
 
 from MDAnalysis.analysis.base import AnalysisBase
 import numpy as np
 
 class ermsfkit(AnalysisBase):
-    r"""Calculate time-dependent RMSF of given atoms across a trajectory.
+    r"""Calculate time-dependent or ensemble RMSF of given atoms across a trajectory.
 
-    Note
-    ----
-    No RMSD-superposition is performed; it is assumed that the user is
-    providing a trajectory where the protein of interest has been structurally
-    aligned to a reference structure. The protein also has be whole because
-    periodic boundaries are not taken into account.
+    Notes
+    -----
+    No RMSD superposition is performed. It is assumed that the user provides
+    a trajectory that has already been aligned to a reference structure.
+    The protein must also be whole because periodic boundaries are not taken 
+    into account.
 
     Run the analysis with :meth:`ermsf.run`, which stores the results in the
     array :attr:`ermsf.results.ermsf`.
 
     """
     def __init__(self, atomgroup, skip=1, reference_frame=0, **kwargs):
-        r"""Parameters
+         r"""Parameters
         ----------
         atomgroup : AtomGroup
-            Atoms for which ermsf is calculated
-        skip : int (optional)
-            Number of frames to skip during the calculation, default is 1.
-        reference_frame : int (optional)
-            Frame number to use as reference for RMSF calculation, default is 0.
-        verbose : bool (optional)
-             Show detailed progress of the calculation if set to ``True``; the
-             default is ``False``.
+            Atoms for which the eRMSF is calculated.
+        skip : int, optional
+            Number of frames to skip during the calculation (default = 1).
+        reference_frame : int, optional
+            Frame index used as reference for the eRMSF calculation (default = 0).
+            The coordinates of this frame define the baseline positions from 
+            which atomic fluctuations are measured.
+        verbose : bool, optional
+             Show detailed progress of the calculation if set to True 
+             (default = False).
 
         Raises
         ------
         ValueError
-             raised if negative values are calculated, which indicates that a
-             numerical overflow or underflow occurred
+            Raised if negative values are calculated, which indicates 
+            numerical instability (overflow/underflow).
 
         Notes
         -----
-        The time-dependent root mean square fluctuation of an atom :math:`i` is computed as the
-        time average over segments of the trajectory.
+        The ensemble/time-dependent root mean square fluctuation (eRMSF) of 
+        an atom :math:`i` is computed as the square root of the mean squared 
+        deviation of its coordinates relative to a chosen reference frame:
 
         .. math::
 
-          \rho_i = \sqrt{\left\langle (\mathbf{x}_i - \langle\mathbf{x}_i\rangle)^2 \right\rangle}
+            \rho_i = \sqrt{ \langle (\mathbf{x}_i - \mathbf{x}_i^{ref})^2 \rangle }
 
-        No mass weighting is performed. 
-        
-        This method implements an algorithm for computing sums of squares while
-        avoiding overflows and underflows :cite:p:`Welford1962`.
+        Here, :math:`\mathbf{x}_i^{ref}` represents the atomic coordinates
+        from the reference frame defined by ``reference_frame``. No mass 
+        weighting is applied.
+
+        This implementation uses Welford's algorithm to maintain numerical 
+        stability when computing sums of squares.
 
         References
         ----------
@@ -61,7 +68,6 @@ class ermsfkit(AnalysisBase):
             :filter: False
 
             Welford1962
-
         """
         super(ermsfkit, self).__init__(atomgroup.universe.trajectory, **kwargs)
         self.atomgroup = atomgroup
