@@ -25,7 +25,7 @@ class ermsfkit(AnalysisBase):
 
     """
     def __init__(self, atomgroup, skip=1, reference_frame=0, **kwargs):
-         r"""Parameters
+        r"""Parameters
         ----------
         atomgroup : AtomGroup
             Atoms for which the eRMSF is calculated.
@@ -36,8 +36,8 @@ class ermsfkit(AnalysisBase):
             The coordinates of this frame define the baseline positions from 
             which atomic fluctuations are measured.
         verbose : bool, optional
-             Show detailed progress of the calculation if set to True 
-             (default = False).
+            Show detailed progress of the calculation if set to True 
+            (default = False).
 
         Raises
         ------
