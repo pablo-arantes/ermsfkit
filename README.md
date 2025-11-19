@@ -102,4 +102,4 @@ Please cite [MDAnalysis](https://github.com/MDAnalysis/mdanalysis#citation) when
 If you use **eRMSF**, please cite the respective software and references:
 
 - **eRMSF**  
-  Arantes et al., *ChemRxiv,* **2025**, DOI: [10.26434/chemrxiv-2025-zqrph](https://doi.org/10.26434/chemrxiv-2025-zqrph)
+  Arantes et al., *Journal of Chemical Information and Modeling,* **2025**, DOI: [10.1021/acs.jcim.5c02413](https://pubs.acs.org/doi/10.1021/acs.jcim.5c02413)
