@@ -4,16 +4,13 @@
 eRMSF: Ensemble RMSF Analysis for Molecular Dynamics
 ==============================================================
 
-.. image:: https://img.shields.io/pypi/v/ermsfkit.svg
-   :target: https://pypi.org/project/ermsfkit/
-   :alt: PyPI version
 
 .. image:: https://github.com/pablo-arantes/ermsfkit/actions/workflows/gh-ci.yaml/badge.svg
    :target: https://github.com/pablo-arantes/ermsfkit/actions/workflows/gh-ci.yaml
    :alt: CI Status
 
-.. image:: https://readthedocs.org/projects/ermsfkit/badge/?version=latest
-   :target: https://ermsfkit.readthedocs.io/en/latest/
+.. image:: https://readthedocs.org/projects/ermsf/badge/?version=latest
+   :target: https://ermsf.readthedocs.io/en/latest/
    :alt: Documentation Status
 
 .. image:: https://img.shields.io/badge/License-GPLv2-blue.svg
