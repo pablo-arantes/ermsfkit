@@ -16,24 +16,6 @@ eRMSF requires:
 Installation from PyPI
 ----------------------
 
-The easiest way to install eRMSF is using ``pip``:
-
-.. code-block:: bash
-
-   pip install ermsfkit
-
-Installation from conda-forge
------------------------------
-
-eRMSF can also be installed using ``conda`` (when available):
-
-.. code-block:: bash
-
-   conda install -c conda-forge ermsfkit
-
-Installation from Source
-------------------------
-
 To install the latest development version from GitHub:
 
 .. code-block:: bash
