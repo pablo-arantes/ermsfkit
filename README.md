@@ -3,10 +3,14 @@ eRMSF: A Python Package for Ensemble RMSF Analysis of Molecular Dynamics and Str
 
 [//]: # (Badges)
 
-| **Status**         | [![GH Actions Status][badge_actions]][url_actions]|
-| :----------------- | :------- |
-| **Community**      | [![License: GPL v2][badge_license]][url_license]  [![Powered by MDAnalysis][badge_mda]][url_mda]|
 
+| **Status**         | [![GH Actions Status][badge_actions]][url_actions] |
+| :----------------- | :------- |
+| **Community**      | [![License: GPL v2][badge_license]][url_license] [![Powered by MDAnalysis][badge_mda]][url_mda] |
+| **Documentation**  | [![Documentation Status][badge_docs]][url_docs] |
+
+[badge_docs]: https://readthedocs.org/projects/ermsf/badge/?version=latest
+[url_docs]: https://ermsf.readthedocs.io/en/latest/
 [badge_actions]: https://github.com/pablo-arantes/ermsfkit/actions/workflows/gh-ci.yaml/badge.svg
 [badge_codecov]: https://codecov.io/gh/pablo-arantes/ermsfkit/branch/main/graph/badge.svg
 [badge_commits_since]: https://img.shields.io/github/commits-since/pablo-arantes/ermsfkit/latest
