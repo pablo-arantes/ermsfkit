@@ -1,0 +1,15 @@
+/* Custom styles for eRMSF documentation */
+.highlight pre {
+    padding: 12px;
+    border-radius: 4px;
+}
+.admonition {
+    border-radius: 4px;
+}
+table.docutils {
+    border-collapse: collapse;
+    width: 100%;
+}
+table.docutils td, table.docutils th {
+    padding: 8px 12px;
+}
