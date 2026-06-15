@@ -1,55 +1,45 @@
-eRMSF: A Python Package for Ensemble RMSF Analysis of Molecular Dynamics and Structural Ensembles
-==============================
+# eRMSF: Ensemble RMSF Analysis for Molecular Dynamics
 
-[//]: # (Badges)
+[![CI Status](https://github.com/pablo-arantes/ermsfkit/actions/workflows/gh-ci.yaml/badge.svg)](https://github.com/pablo-arantes/ermsfkit/actions/workflows/gh-ci.yaml)
+[![Documentation Status](https://readthedocs.org/projects/ermsf/badge/?version=latest)](https://ermsf.readthedocs.io/en/latest/?badge=latest)
+[![License: GPL v2](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+[![Powered by MDAnalysis](https://img.shields.io/badge/Powered%20by-MDAnalysis-orange.svg)](https://www.mdanalysis.org)
 
+## What is eRMSF?
 
-| **Status**         | [![GH Actions Status][badge_actions]][url_actions] |
-| :----------------- | :------- |
-| **Community**      | [![License: GPL v2][badge_license]][url_license] [![Powered by MDAnalysis][badge_mda]][url_mda] |
-| **Documentation**  | [![Documentation Status][badge_docs]][url_docs] |
+**eRMSF** (ensemble Root Mean Square Fluctuation) is a Python package for performing time-dependent and ensemble RMSF analysis on molecular dynamics trajectories and structural ensembles.
 
-[badge_docs]: https://readthedocs.org/projects/ermsf/badge/?version=latest
-[url_docs]: https://ermsf.readthedocs.io/en/latest/
-[badge_actions]: https://github.com/pablo-arantes/ermsfkit/actions/workflows/gh-ci.yaml/badge.svg
-[badge_codecov]: https://codecov.io/gh/pablo-arantes/ermsfkit/branch/main/graph/badge.svg
-[badge_commits_since]: https://img.shields.io/github/commits-since/pablo-arantes/ermsfkit/latest
-[badge_docs]: https://readthedocs.org/projects/ermsfkit/badge/?version=latest
-[badge_license]: https://img.shields.io/badge/License-GPLv2-blue.svg
-[badge_mda]: https://img.shields.io/badge/powered%20by-MDAnalysis-orange.svg?logoWidth=16&logo=data:image/x-icon;base64,AAABAAEAEBAAAAEAIAAoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJD+XwCY/fEAkf3uAJf97wGT/a+HfHaoiIWE7n9/f+6Hh4fvgICAjwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACT/yYAlP//AJ///wCg//8JjvOchXly1oaGhv+Ghob/j4+P/39/f3IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJH8aQCY/8wAkv2kfY+elJ6al/yVlZX7iIiI8H9/f7h/f38UAAAAAAAAAAAAAAAAAAAAAAAAAAB/f38egYF/noqAebF8gYaagnx3oFpUUtZpaWr/WFhY8zo6OmT///8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgICAn46Ojv+Hh4b/jouJ/4iGhfcAAADnAAAA/wAAAP8AAADIAAAAAwCj/zIAnf2VAJD/PAAAAAAAAAAAAAAAAICAgNGHh4f/gICA/4SEhP+Xl5f/AwMD/wAAAP8AAAD/AAAA/wAAAB8Aov9/ALr//wCS/Z0AAAAAAAAAAAAAAACBgYGOjo6O/4mJif+Pj4//iYmJ/wAAAOAAAAD+AAAA/wAAAP8AAABhAP7+FgCi/38Axf4fAAAAAAAAAAAAAAAAiIiID4GBgYKCgoKogoB+fYSEgZhgYGDZXl5e/m9vb/9ISEjpEBAQxw8AAFQAAAAAAAAANQAAADcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjo6Mb5iYmP+cnJz/jY2N95CQkO4pKSn/AAAA7gAAAP0AAAD7AAAAhgAAAAEAAAAAAAAAAACL/gsAkv2uAJX/QQAAAAB9fX3egoKC/4CAgP+NjY3/c3Nz+wAAAP8AAAD/AAAA/wAAAPUAAAAcAAAAAAAAAAAAnP4NAJL9rgCR/0YAAAAAfX19w4ODg/98fHz/i4uL/4qKivwAAAD/AAAA/wAAAP8AAAD1AAAAGwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALGxsVyqqqr/mpqa/6mpqf9KSUn/AAAA5QAAAPkAAAD5AAAAhQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADkUFBSuZ2dn/3V1df8uLi7bAAAATgBGfyQAAAA2AAAAMwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB0AAADoAAAA/wAAAP8AAAD/AAAAWgC3/2AAnv3eAJ/+dgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9AAAA/wAAAP8AAAD/AAAA/wAKDzEAnP3WAKn//wCS/OgAf/8MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIQAAANwAAADtAAAA7QAAAMAAABUMAJn9gwCe/e0Aj/2LAP//AQAAAAAAAAAA
-[badge_release]: https://img.shields.io/github/release-pre/pablo-arantes/ermsfkit.svg
-[url_actions]: https://github.com/pablo-arantes/ermsfkit/actions?query=branch%3Amain+workflow%3Agh-ci
-[url_codecov]: https://codecov.io/gh/pablo-arantes/ermsfkit/branch/main
-[url_docs]: https://ermsfkit.readthedocs.io/en/latest/?badge=latest
-[url_latest_release]: https://github.com/pablo-arantes/ermsfkit/releases
-[url_license]: https://www.gnu.org/licenses/gpl-2.0
-[url_mda]: https://www.mdanalysis.org
+Unlike the standard RMSF, which averages atomic fluctuations over an entire trajectory relative to the mean structure, the eRMSF partitions the trajectory into time segments and computes fluctuations relative to a **user-defined reference frame**. This enables the study of how protein flexibility evolves over simulation time or across ensemble members.
 
-Here, we introduce eRMSF, a fast and user-friendly Python package built with MDAKit from MD-Analysis, designed to perform ensemble-based Root Mean Square Fluctuation (RMSF) analyses. Users can easily customize atom, residue, or region selections, tailoring analyses to specific research questions. This approach delivers high-resolution insights into localized motions, complements global stability assessments, and reveals dynamic regions often overlooked by single-method analyses.
+<p align="center">
+  <img src="TOC_eRMSF.png" alt="eRMSF overview" width="600"/>
+</p>
 
-eRMSF is bound by a [Code of Conduct](https://github.com/pablo-arantes/ermsfkit/blob/main/CODE_OF_CONDUCT.md).
+## Key Features
 
-![alt text](https://github.com/pablo-arantes/ermsfkit/blob/main/TOC_eRMSF.png)
+- **Time-resolved flexibility analysis** — Partition trajectories into segments and track how RMSF evolves over simulation time
+- **Reference-frame flexibility** — Compute fluctuations relative to any user-defined reference frame
+- **MDAnalysis integration** — Built on top of the [MDAnalysis](https://www.mdanalysis.org) analysis framework
+- **Numerically stable** — Uses Welford's algorithm for stable computation
+- **Flexible input** — Works with any trajectory format supported by MDAnalysis (PDB, XTC, TRR, DCD, and more)
 
+## Installation
 
-### Installation
+Install directly from GitHub:
 
-Below we provide instructions for `pip` installation.
-
-#### With pip
-
-To build the package from source, run:
-
-```
+```bash
 pip install git+https://github.com/pablo-arantes/ermsfkit.git
-
-or
-
-git clone https://github.com/pablo-arantes/ermsfkit.git
-pip install ermsfkit/
 ```
-#### Usage
-Below we provide an example of use:
+
+Or clone and install locally:
+
+```bash
+git clone https://github.com/pablo-arantes/ermsfkit.git
+cd ermsfkit
+pip install -e .
+```
+
+## Quick Start
 
 ```
 from eRMSF import ermsfkit
@@ -82,28 +72,70 @@ ermsf_analysis.run()
 results = ermsf_analysis.results.ermsf
 ```
 
+## Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `atomgroup` | AtomGroup | *required* | Atoms for which eRMSF is calculated |
+| `skip` | int | 1 | Number of frames per time segment |
+| `reference_frame` | int | 0 | Frame index used as reference |
+| `verbose` | bool | False | Show progress during calculation |
+
 ### Jupyter Notebook (Google Colab) 
 
 For convenience, we also provide a Google Colab notebook that allows users to run the eRMSF analysis with ease.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pablo-arantes/ermsfkit/blob/main/eRMSF.ipynb)  - `eRMSF calculation with comparison to traditional RMSF.`
 
-### Copyright
+## Documentation
 
-The eRMSF source code is hosted at https://github.com/pablo-arantes/ermsfkit
-and is available under the GNU General Public License, version 2 (see the file [LICENSE](https://github.com/pablo-arantes/ermsfkit/blob/main/LICENSE)).
+Full documentation is available at **[ermsf.readthedocs.io](https://ermsf.readthedocs.io)**, including:
 
-Copyright (c) 2025, Pablo Arantes
+- [Installation Guide](https://ermsf.readthedocs.io/en/latest/installation.html)
+- [Getting Started](https://ermsf.readthedocs.io/en/latest/getting_started.html)
+- [Usage Examples](https://ermsf.readthedocs.io/en/latest/usage.html)
+- [Theoretical Background](https://ermsf.readthedocs.io/en/latest/theory.html)
+- [API Reference](https://ermsf.readthedocs.io/en/latest/api.html)
 
+## Requirements
 
-#### Acknowledgements
+- Python >= 3.9
+- MDAnalysis >= 2.0.0
+- NumPy
 
-Project based on the [MDAnalysis Cookiecutter](https://github.com/MDAnalysis/cookiecutter-mda) version 0.1.
-Please cite [MDAnalysis](https://github.com/MDAnalysis/mdanalysis#citation) when using eRMSF in published work.
+## Important Notes
 
-### Citation Guidelines
+- **Alignment required**: The trajectory must be aligned to a reference structure before running eRMSF. No RMSD superposition is performed internally.
+- **Whole molecules**: The protein must be whole (no broken molecules across periodic boundaries).
 
-If you use **eRMSF**, please cite the respective software and references:
+## Citation
 
-- **eRMSF**  
-  Arantes et al., *Journal of Chemical Information and Modeling,* **2025**, DOI: [10.1021/acs.jcim.5c02413](https://pubs.acs.org/doi/10.1021/acs.jcim.5c02413)
+If you use eRMSF in your research, please cite:
+
+> Arantes et al., *Journal of Chemical Information and Modeling*, 2025. DOI: [10.1021/acs.jcim.5c02413](https://doi.org/10.1021/acs.jcim.5c02413)
+
+```bibtex
+@article{arantes2025ermsf,
+  author = {Arantes, Pablo R. and others},
+  title = {eRMSF: A Python Package for Ensemble RMSF Analysis of Molecular Dynamics and Structural Ensembles},
+  journal = {Journal of Chemical Information and Modeling},
+  year = {2025},
+  doi = {10.1021/acs.jcim.5c02413}
+}
+```
+
+## Contributing
+
+Contributions are welcome! Please see our [Contributing Guide](CONTRIBUTING.md) for details on how to get started.
+
+## License
+
+This project is licensed under the GNU General Public License v2.0 — see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgements
+
+eRMSF is built on top of the excellent [MDAnalysis](https://www.mdanalysis.org) library. Project structure based on the [MDAnalysis Cookiecutter](https://github.com/MDAnalysis/cookiecutter-mdakit).
+
+---
+
+*Developed by [Pablo Arantes](https://github.com/pablo-arantes)*
