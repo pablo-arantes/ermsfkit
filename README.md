@@ -138,4 +138,4 @@ eRMSF is built on top of the excellent [MDAnalysis](https://www.mdanalysis.org) 
 
 ---
 
-*Developed by [Pablo Arantes](https://github.com/pablo-arantes)*
+*Developed by [Pablo Arantes](https://pablo-arantes.github.io/)*
